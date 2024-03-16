@@ -3,16 +3,11 @@ import { useState } from "react";
 import { Htag, Button, P, Tag, Rating } from "../components";
 
 export default function Home() {
-  const [counter, setCounter] = useState(0);
+  const [rating, setRating] = useState<number>(4);
   return (
     <div>
-      <Htag tag="h1">{counter}</Htag>
-      <Button
-        appearance="primary"
-        arrow="right"
-        className="testClassname"
-        onClick={() => setCounter(counter + 1)}
-      >
+      <Htag tag="h1">Hello</Htag>
+      <Button appearance="primary" arrow="right" className="testClassname">
         Button
       </Button>
       <Button appearance="ghost" arrow="right">
@@ -27,7 +22,7 @@ export default function Home() {
       <Tag color="primary">Primary</Tag>
       <Tag color="ghost">Ghost</Tag>
       <Tag color="grey">Grey</Tag>
-      <Rating rating={3} isEditable={true} />
+      <Rating rating={rating} isEditable={true} setRating={setRating} />
     </div>
   );
 }

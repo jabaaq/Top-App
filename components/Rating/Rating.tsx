@@ -1,7 +1,7 @@
 import { RatingProps } from "./Rating.props";
 import styles from "./Rating.module.css";
 import cn from "classNames";
-import { useEffect, useState } from "react";
+import { useEffect, useState, KeyboardEvent } from "react";
 import { TiStarFullOutline } from "react-icons/ti";
 
 export const Rating = ({
@@ -30,6 +30,11 @@ export const Rating = ({
           })}
           onMouseEnter={() => changeDisplay(i + 1)}
           onMouseLeave={() => changeDisplay(rating)}
+          onClick={() => changeRating(i + 1)}
+          tabIndex={isEditable ? 0 : -1} //if isEditable it lines up one after another, if not, then Minus one means it will be outside the Tab
+          onKeyDown={(e: KeyboardEvent<SVGElement>) =>
+            isEditable && handleSpace(e, i + 1)
+          }
         />
       );
     });
@@ -42,6 +47,20 @@ export const Rating = ({
       return;
     }
     constructRating(i);
+  };
+
+  const changeRating = (i: number) => {
+    if (!isEditable || !setRating) {
+      return;
+    }
+    setRating(i);
+  };
+
+  const handleSpace = (e: KeyboardEvent<SVGElement>, i: number) => {
+    if (e.code !== "Space" || !setRating) {
+      return;
+    }
+    setRating(i);
   };
 
   return (
