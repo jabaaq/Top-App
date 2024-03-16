@@ -1,10 +1,18 @@
-import { Htag, Button, P, Tag } from "../components";
+"use client";
+import { useState } from "react";
+import { Htag, Button, P, Tag, Rating } from "../components";
 
 export default function Home() {
+  const [counter, setCounter] = useState(0);
   return (
     <div>
-      <Htag tag="h1">Hello</Htag>
-      <Button appearance="primary" arrow="right" className="testClassname">
+      <Htag tag="h1">{counter}</Htag>
+      <Button
+        appearance="primary"
+        arrow="right"
+        className="testClassname"
+        onClick={() => setCounter(counter + 1)}
+      >
         Button
       </Button>
       <Button appearance="ghost" arrow="right">
@@ -19,6 +27,7 @@ export default function Home() {
       <Tag color="primary">Primary</Tag>
       <Tag color="ghost">Ghost</Tag>
       <Tag color="grey">Grey</Tag>
+      <Rating rating={4} />
     </div>
   );
 }
