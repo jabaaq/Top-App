@@ -26,11 +26,22 @@ export const Rating = ({
           size={20}
           className={cn(styles.star, {
             [styles.filled]: i < currRating,
+            [styles.editable]: isEditable,
           })}
+          onMouseEnter={() => changeDisplay(i + 1)}
+          onMouseLeave={() => changeDisplay(rating)}
         />
       );
     });
     setRatingArray(updatedArray);
+  };
+
+  const changeDisplay = (i: number) => {
+    if (!isEditable) {
+      //if the component is't editable, it shouldn’t change during the onMouseEnter
+      return;
+    }
+    constructRating(i);
   };
 
   return (
