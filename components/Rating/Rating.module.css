@@ -3,7 +3,7 @@
 }
 
 .star {
-    margin-right: 5px;
+    transition: all 0.2s;
 }
 
 .editable {

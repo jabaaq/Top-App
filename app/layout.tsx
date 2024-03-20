@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import { Header } from "./Header/Header";
+import { Sidebar } from "./Sidebar/Sidebar";
+import { Footer } from "./Footer/Footer";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -16,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <>
+        <Header />
+        <div>
+          <Sidebar />
+          {/* <div>{children}</div> */}
+          <body className={inter.className}>{children}</body>
+        </div>
+        <Footer />
+      </>
     </html>
   );
 }
