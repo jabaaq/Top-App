@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import styles from "./layout.module.css";
 import { Header } from "./Header/Header";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
+import { FunctionComponent } from "react";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -19,15 +21,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <>
-        <Header />
-        <div>
-          <Sidebar />
-          {/* <div>{children}</div> */}
-          <body className={inter.className}>{children}</body>
-        </div>
-        <Footer />
-      </>
+      <body className={styles.wrapper}>
+        <Header className={styles.header} />
+        <Sidebar className={styles.sidebar} />
+        <div className={styles.body}>{children}</div>
+        <Footer className={styles.footer} />
+      </body>
     </html>
   );
 }
+
+// export const withLayout = <T extends Record<string, unknown>>(
+//   Component: FunctionComponent<T>
+// ) => {
+//   return function withLayoutComponent(props: T) {};
+// };
