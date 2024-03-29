@@ -23,6 +23,7 @@ export const Rating = ({
     const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
       return (
         <TiStarFullOutline
+          key={i}
           size={25}
           className={cn(styles.star, {
             [styles.filled]: i < currRating,
